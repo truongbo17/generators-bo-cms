@@ -1,0 +1,28 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+use Bo\Base\Models\Traits\CrudTrait;
+
+class DummyClass extends Model
+{
+    use CrudTrait;
+
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
+
+    protected $table = 'DummyTable';
+    // protected $primaryKey = 'id';
+    // public $timestamps = false;
+    protected $guarded = ['id'];
+    protected $fillable = [
+        'name'
+    ];
+    // protected $hidden = [];
+    // protected $dates = [];
+
+}

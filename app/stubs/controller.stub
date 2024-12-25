@@ -1,0 +1,76 @@
+<?php
+
+namespace DummyNamespace;
+
+use Bo\Base\Http\Controllers\CrudController;
+use Bo\Base\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Bo\Base\Http\Controllers\Operations\ListOperation;
+use Bo\Base\Http\Controllers\Operations\CreateOperation;
+use Bo\Base\Http\Controllers\Operations\UpdateOperation;
+use Bo\Base\Http\Controllers\Operations\DeleteOperation;
+use Bo\Base\Http\Controllers\Operations\ShowOperation;
+
+class DummyClassController extends CrudController
+{
+    use ListOperation;
+    use CreateOperation;
+    use UpdateOperation;
+    use DeleteOperation;
+    use ShowOperation;
+
+    /**
+     * Configure the CrudPanel object. Apply settings to all operations.
+     *
+     * @return void
+     */
+    public function setup()
+    {
+        CRUD::setModel(\DummyClassModel::class);
+        CRUD::setRoute(config('bo.base.route_prefix') . '/dummy-class');
+        CRUD::setEntityNameStrings('dummy singular', 'dummy plural');
+    }
+
+    /**
+     * Define what happens when the List operation is loaded.
+     *
+     * @return void
+     */
+    protected function setupListOperation()
+    {
+        CRUD::setFromDb(); // columns
+
+        /**
+         * Columns can be defined using the fluent syntax or array syntax:
+         * - CRUD::column('price')->type('number');
+         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
+         */
+    }
+
+    /**
+     * Define what happens when the Create operation is loaded.
+     *
+     * @return void
+     */
+    protected function setupCreateOperation()
+    {
+        CRUD::setValidation(\DummyClassRequest::class);
+
+        CRUD::setFromDb(); // fields
+
+        /**
+         * Fields can be defined using the fluent syntax or array syntax:
+         * - CRUD::field('price')->type('number');
+         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
+         */
+    }
+
+    /**
+     * Define what happens when the Update operation is loaded.
+     *
+     * @return void
+     */
+    protected function setupUpdateOperation()
+    {
+        $this->setupCreateOperation();
+    }
+}

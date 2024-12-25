@@ -1,0 +1,19 @@
+{
+    "name": "bo/generators",
+    "description": "Core Generator CMS",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Bo\\Generators\\": "app"
+        }
+    },
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bo\\Generators\\Providers\\GeneratorsServiceProvider"
+            ]
+        }
+    }
+}

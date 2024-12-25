@@ -1,0 +1,35 @@
+<?php
+
+namespace DummyNamespace;
+
+use Bo\Base\Services\LoadAndPublishDataTrait;
+use Illuminate\Support\ServiceProvider;
+
+class DummyClass extends ServiceProvider
+{
+    use LoadAndPublishDataTrait;
+
+    public function register()
+    {
+        $this
+            ->setDirPlugin("DummyName")
+            ->setPrimaryKeyPlugin("DummyName")
+            ->loadRoutes(["web"])
+            ->loadHelper();
+    }
+
+    public function boot()
+    {
+        $this
+            ->loadMigration()
+            ->loadAndPublishTranslations()
+            ->loadAndPublishViews();
+
+        \SideBarDashBoard::registerItem('DummyName')
+            ->setLabel('DummyLabel')
+            ->setPosition(10)
+            ->setRoute(bo_url('DummyName'))
+            ->setIcon('nav-icon lar la-question-circle')
+            ->render();
+    }
+}

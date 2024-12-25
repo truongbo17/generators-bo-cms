@@ -1,0 +1,10 @@
+{
+    "primary_key": "plugin_name",
+    "name": "name_title",
+    "namespace": "namespace_plugin",
+    "provider": "provider_plugin",
+    "author": "Nguyen Quang Truong",
+    "url": "https://github.com/truongbo17",
+    "version": "1.0",
+    "description": "The description for module plugin_name"
+}
